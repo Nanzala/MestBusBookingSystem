@@ -1,8 +1,12 @@
 package bookingsystem;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by law on 9/24/15.
@@ -13,11 +17,14 @@ public class MestBus {
     String[] bus2 = new String[]{"2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H", "2I", "2J", "2K", "2L", "2M", "2N", "2O", "2P", "2Q"};
     List<String> list1, list2;
 
+    FileWriter fileWriter;
+    Scanner scanner;
+
     public MestBus(){
         list1 = new ArrayList<>();
-        list1.addAll(Arrays.asList(bus1));
+        //list1.addAll(Arrays.asList(bus1));
         list2 = new ArrayList<>();
-        list2.addAll(Arrays.asList(bus2));
+        //list2.addAll(Arrays.asList(bus2));
     }
 
     public List<String> checkBusAvailability(){
@@ -42,6 +49,56 @@ public class MestBus {
             list1.remove(seatNo);
         }else{
             list2.remove(seatNo);
+        }
+    }
+
+    public List<String> checkBusAvailabilityFromDB(){
+        List<String> combinedList = new ArrayList<>();
+        try {
+            scanner = new Scanner(new File("bus1.txt"));
+            while(scanner.hasNext()){
+                list1.add(scanner.nextLine());
+            }
+            scanner = new Scanner(new File("bus2.txt"));
+            while(scanner.hasNext()){
+                list2.add(scanner.nextLine());
+            }
+            combinedList.addAll(list1);
+            combinedList.addAll(list2);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return combinedList;
+    }
+
+    public void checkOutSeatFromDB(String seatNo){
+        FileWriter fileWriter = null;
+        try {
+            if(list1.contains(seatNo)){
+                fileWriter = new FileWriter(new File("bus1.txt"));
+                list1.remove(seatNo);
+                System.out.println(list1);
+                for(String x: list1){
+                    fileWriter.write(x + "\n");
+                }
+
+            }else{
+                fileWriter = new FileWriter(new File("bus2.txt"));
+                System.out.println(seatNo);
+                list2.remove(seatNo);
+                System.out.println(list2);
+                for(String x: list2){
+                    fileWriter.write(x + "\n");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

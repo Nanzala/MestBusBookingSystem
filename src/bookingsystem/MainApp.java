@@ -19,7 +19,8 @@ public class MainApp {
         Check for availability of bus
          */
         mestBus = new MestBus();
-        List<String> busAvailability = mestBus.checkBusAvailability();
+        //List<String> busAvailability = mestBus.checkBusAvailability();
+        List<String> busAvailability = mestBus.checkBusAvailabilityFromDB();
 
         if (busAvailability.size() > 0) {
             String message = "";
@@ -43,7 +44,8 @@ public class MainApp {
                 System.out.print("\nEnter a seat Number you would want to reserve : ");
                 seatNo = scanner.nextLine();
                 if (busAvailability.contains(seatNo.toUpperCase())) {
-                    mestBus.checkOutSeat(seatNo);
+                    //mestBus.checkOutSeat(seatNo);
+                    mestBus.checkOutSeatFromDB(seatNo.toUpperCase());
                     System.out.println("\nThanks! Seat " + seatNo.toUpperCase() + " has been reserved for you.");
                     System.exit(0);
                 } else {
