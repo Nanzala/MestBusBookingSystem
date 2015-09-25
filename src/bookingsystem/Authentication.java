@@ -22,7 +22,7 @@ public class Authentication {
         boolean a = true;
         boolean b = verifyId();
         if (a != b) {
-            System.out.println("\nYou have exhausted your number of trials.\nPlease try again later.");
+            System.out.println("\nYou have exhausted your number of trials.\n\nPlease try again later.");
             System.exit(0);
         }
         return b;
@@ -51,7 +51,11 @@ public class Authentication {
                 break;
             }
             if(j < 2){
-                System.out.print("Your ID is wrong, try again : ");
+                if((2 - j) == 1){
+                    System.out.print("Your ID is wrong, you have " + (2 - j) + " trial remaining : ");
+                }else{
+                    System.out.print("Your ID is wrong, you have " + (2 - j) + " trials remaining : ");
+                }
             }
             j++;
         }
