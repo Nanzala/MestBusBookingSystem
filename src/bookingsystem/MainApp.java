@@ -8,6 +8,7 @@ import java.util.Scanner;
  */
 public class MainApp {
 
+    static Authentication authentication;
     static MestBus mestBus;
     static Reservation reservation;
     static Scanner scanner;
@@ -17,13 +18,19 @@ public class MainApp {
         String seatNo;
 
         /*
-        Check for availability of bus
+        Authenticate user
          */
-        mestBus = new MestBus();
-        //List<String> busAvailability = mestBus.checkBusAvailability();
-        List<String> busAvailability = mestBus.checkBusAvailabilityFromDB();
+        authentication = new Authentication();
+        if(authentication.authenticate() == true){
+            /*
+            Check for availability of bus
+             */
+            mestBus = new MestBus();
+            //List<String> busAvailability = mestBus.checkBusAvailability();
+            List<String> busAvailability = mestBus.checkBusAvailabilityFromDB();
 
-        reservation = new Reservation();
-        reservation.reserveSeat(mestBus, scanner, busAvailability);
+            reservation = new Reservation();
+            reservation.reserveSeat(mestBus, scanner, busAvailability);
+        }
     }
 }

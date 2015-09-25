@@ -23,7 +23,9 @@ public class Reservation {
                 }
             }
             message = message.substring(0, message.length() - 2);
+            System.out.println("----------------------------------------------------------------------");
             System.out.println("Bus 1 : " + message);
+            System.out.println("----------------------------------------------------------------------");
             message = "";
             for (String seat : busAvailability) {
                 if (seat.contains("2")) {
@@ -31,7 +33,9 @@ public class Reservation {
                 }
             }
             message = message.substring(0, message.length() - 2);
-            System.out.println("\nBus 2 : " + message);
+            System.out.println("----------------------------------------------------------------------");
+            System.out.println("Bus 2 : " + message);
+            System.out.println("----------------------------------------------------------------------");
 
             while(true){
                 System.out.print("\nEnter a seat Number you would want to reserve : ");
@@ -42,7 +46,7 @@ public class Reservation {
                     System.out.println("\nThanks! Seat " + seatNo.toUpperCase() + " has been reserved for you.");
                     System.exit(0);
                 } else {
-                    System.out.println("\nInvalid seat.");
+                    System.out.println("\nThe seat you entered is not available.");
                 }
             }
         } else {
