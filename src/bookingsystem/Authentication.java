@@ -13,6 +13,7 @@ import java.util.Scanner;
  */
 
 public class Authentication {
+    Scanner inp = new Scanner(System.in);
     boolean verified = false;
     String[] id = {"B3475", "B4753", "A7423", "A6577", "A8989", "A9788", "A4343", "A5468", "A8709", "B6670"};
     String[] name = {"Bernard", "Tabitha", "Julius", "Amanze", "Mukeli", "Patience", "Eric", "Henry", "Law", "Isaac"};
@@ -28,18 +29,10 @@ public class Authentication {
         return b;
     }
 
-
-    public String retry() {
-        Scanner inp = new Scanner(System.in);
-        String input = inp.nextLine();
-        return input;
-    }
-
     public boolean verifyId() {
         int j = 0;
-        String myId;
         while (j < 3) {
-            myId = retry();
+            String myId = inp.nextLine();
             for (int i = 0; i < id.length; i++) {
                 if (myId.equalsIgnoreCase(id[i])) {
                     System.out.println("\nWelcome " + name[i] + ",\n");
