@@ -13,4 +13,9 @@ hs_err_pid*
 
 #ignore intellij files
 .idea
+.DS_Store
 MestBusBookingSystem.iml
+
+#ignore copies of text files
+bus1_copy.txt
+bus2_copy.txt
