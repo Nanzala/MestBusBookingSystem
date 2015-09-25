@@ -72,12 +72,11 @@ public class MestBus {
     }
 
     public void checkOutSeatFromDB(String seatNo){
-        FileWriter fileWriter = null;
         try {
             if(list1.contains(seatNo)){
                 fileWriter = new FileWriter(new File("bus1.txt"));
                 list1.remove(seatNo);
-                System.out.println(list1);
+                //System.out.println(list1);
                 for(String x: list1){
                     fileWriter.write(x + "\n");
                 }
@@ -86,7 +85,7 @@ public class MestBus {
                 fileWriter = new FileWriter(new File("bus2.txt"));
                 System.out.println(seatNo);
                 list2.remove(seatNo);
-                System.out.println(list2);
+                //System.out.println(list2);
                 for(String x: list2){
                     fileWriter.write(x + "\n");
                 }
@@ -95,11 +94,11 @@ public class MestBus {
             e.printStackTrace();
         }finally {
             try {
+                fileWriter.flush();
                 fileWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
 }
